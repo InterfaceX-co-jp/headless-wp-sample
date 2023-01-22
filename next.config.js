@@ -10,9 +10,10 @@ module.exports = withFaust({
   },
   images: {
     domains: [getWpHostname()],
+    unoptimized: true
   },
-  i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
-  },
+  // i18n: {
+  //   locales: ['en'],
+  //   defaultLocale: 'en',
+  // },
 });
