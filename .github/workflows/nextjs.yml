@@ -71,8 +71,8 @@ jobs:
       - name: Export with Next.js
         run: npm run export
         env:
-          BASE_PATH: /headless-wp-sample
-          ASSET_PREFIX: /headless-wp-sample
+          BASE_PATH: /
+          ASSET_PREFIX: /
           FAUSTWP_SECRET_KEY: ${{ secrets.FAUSTWP_SECRET_KEY }}
           NEXT_PUBLIC_WORDPRESS_URL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_URL }}
       - name: Zip the out dir
