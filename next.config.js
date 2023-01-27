@@ -17,6 +17,7 @@ module.exports = withFaust({
   //   defaultLocale: 'en',
   // },
   env: {
+    basePath: '/headless-wp-sample',
     NEXT_PUBLIC_WORDPRESS_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
     FAUSTWP_SECRET_KEY: process.env.FAUSTWP_SECRET_KEY
   },
