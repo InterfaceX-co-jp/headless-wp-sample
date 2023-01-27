@@ -74,6 +74,9 @@ jobs:
         run: npm install
       - name: Export with Next.js
         run: npm run export
+        env:
+          FAUSTWP_SECRET_KEY: ${{ secrets.FAUSTWP_SECRET_KEY }}
+          NEXT_PUBLIC_WORDPRESS_URL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_URL }}
       - name: DEBUG
         run: ls
       - name: Upload artifact
