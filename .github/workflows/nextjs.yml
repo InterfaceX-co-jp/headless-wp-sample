@@ -95,7 +95,7 @@ jobs:
             cd /home/rwzyscpo/public_html/wp-experiment-front
             find *.zip
             unzip -o out.zip
-            \cp -r out/ ./
+            \cp -ar out/ ./
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v1
       #   with:
