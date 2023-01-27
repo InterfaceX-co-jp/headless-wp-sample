@@ -30,8 +30,9 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: 20
-          script: whoami
+          script: |
+            whoami
+            ls
   # Build job
   build:
     runs-on: ubuntu-latest
