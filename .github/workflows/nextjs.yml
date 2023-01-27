@@ -92,9 +92,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            find out
+            find *.zip
             cd /home/rwzyscpo/public_html/wp-experiment-front
-            unzip -o out.zip -d out/
+            unzip -o out.zip
             \cp -r out/ /home/rwzyscpo/public_html/wp-experiment-front/
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v1
