@@ -20,19 +20,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # TESTEST
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            whoami
-            ls
   # Build job
   build:
     runs-on: ubuntu-latest
@@ -88,12 +75,31 @@ jobs:
           ASSET_PREFIX: /headless-wp-sample
           FAUSTWP_SECRET_KEY: ${{ secrets.FAUSTWP_SECRET_KEY }}
           NEXT_PUBLIC_WORDPRESS_URL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_URL }}
-      - name: DEBUG
-        run: ls
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Zip the out dir
+        run: zip -r out.zip out
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
         with:
-          path: ./out
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "out.zip"
+          target: "/home/rwzyscpo/public_html/wp-experiment-front"
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            find out
+            cd /home/rwzyscpo/public_html/wp-experiment-front
+            unzip -o out.zip -d out/
+            cp -r out/ /home/rwzyscpo/public_html/wp-experiment-front/
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     path: ./out
 
   # # Deployment job
   # deploy:
