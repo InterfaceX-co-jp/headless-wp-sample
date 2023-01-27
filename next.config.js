@@ -16,4 +16,8 @@ module.exports = withFaust({
   //   locales: ['en'],
   //   defaultLocale: 'en',
   // },
+  env: {
+    NEXT_PUBLIC_WORDPRESS_URL: process.env.NEXT_PUBLIC_WORDPRESS_URL,
+    FAUSTWP_SECRET_KEY: process.env.FAUSTWP_SECRET_KEY
+  },
 });
