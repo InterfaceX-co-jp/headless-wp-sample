@@ -74,6 +74,8 @@ jobs:
         run: npm install
       - name: Export with Next.js
         run: npm run export
+      - name: DEBUG
+        run: ls
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
