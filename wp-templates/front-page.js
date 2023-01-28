@@ -9,6 +9,8 @@ import {
   NavigationMenu,
   Hero,
   SEO,
+  Post,
+  FeaturedImage
 } from '../components';
 
 export default function Component() {
@@ -20,6 +22,10 @@ export default function Component() {
     data?.generalSettings;
   const primaryMenu = data?.headerMenuItems?.nodes ?? [];
   const footerMenu = data?.footerMenuItems?.nodes ?? [];
+
+  const postList = data?.postList.nodes ?? []
+
+  const hasPost = postList.length > 0
 
   return (
     <>
@@ -33,6 +39,19 @@ export default function Component() {
         <Container>
           <Hero title={'Front Page'} />
           <div className="text-center">
+            <div>
+              {
+                hasPost && postList.map((el) => {
+                  return <Post
+                    title={el.title}
+                    content={el.content}
+                    date={el.date}
+                    author={el.author.node.name}
+                    uri={el.uri}
+                  />
+                })
+              }
+            </div>
             <p>This page is utilizing the "front-page" WordPress template.</p>
             <code>./wp-templates/front-page.js</code>
           </div>
@@ -52,6 +71,20 @@ Component.query = gql`
   ) {
     generalSettings {
       ...BlogInfoFragment
+    }
+    postList: posts {
+      nodes {
+        id
+        title
+        content
+        date
+        uri
+        author {
+          node {
+            name
+          }
+        }
+      }
     }
     headerMenuItems: menuItems(where: { location: $headerLocation }) {
       nodes {
