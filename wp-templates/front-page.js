@@ -25,8 +25,6 @@ export default function Component() {
 
   const postList = data?.postList.nodes ?? []
 
-  console.log(data?.postList.nodes)
-
   const hasPost = postList.length > 0
 
   return (
