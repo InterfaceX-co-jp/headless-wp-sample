@@ -12,6 +12,14 @@ import {
   Post,
   FeaturedImage
 } from '../components';
+import { getNextStaticProps } from '@faustwp/core';
+
+export async function getStaticProps(context) {
+  return getNextStaticProps(context, {
+    Page: Component,
+    revalidate: 300, //5mins
+  });
+}
 
 export default function Component() {
   const { data } = useQuery(Component.query, {
