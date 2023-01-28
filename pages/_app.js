@@ -7,6 +7,14 @@ import '../styles/global.scss';
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
+  const { preview } = router.query
+
+  if (preview) {
+    router.push('/preview', {
+      query: router.query
+    })
+  }
+
   return (
     <FaustProvider pageProps={pageProps}>
       <Component {...pageProps} key={router.asPath} />
