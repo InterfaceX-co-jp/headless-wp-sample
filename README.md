@@ -30,3 +30,8 @@ Next.js で SSG/SPA レンダリングする場合、クライアントサイド
     RewriteRule ^ index.html [QSA,L]
 </IfModule>
 ```
+
+## WP プラグイン
+
+[Faust](https://wordpress.org/plugins/faustwp/)
+[wp-graphql](https://github.com/wp-graphql/wp-graphql)
